@@ -63,41 +63,21 @@
                         <%= user.city %>
                     </td>
                     <td>
+                        <!-- Cách 1: dùng thẻ a - method: Get -->
                         <a href="/update/<%= user.id %>">Edit</a>
-                        <button>Delete</button>
+                        <!-- Cách 2: dùng thẻ button và thẻ form - method: Post -->
+                        <form action="/delete-user/<%= user.id %>" method="POST">
+                            <button>Delete</button>
+                        </form>
+
+
                     </td>
                 </tr>
                 <% }); %>
         </table>
     </div>
 
-    <!-- <div class="form-add-new">
-        <form action="/create-user"
-            method="POST">
-            <fieldset>
-                <legend>Add users</legend>
-                <div class="input-group">
-                    <label for="">Email</label>
-                    <input type="text"
-                        name="email">
-                </div>
-                <div class="input-group">
-                    <label for="">Name</label>
-                    <input type="text"
-                        name="Myname">
-                </div>
-                <div class="input-group">
-                    <label for="">City</label>
-                    <input type="text"
-                        name="Mycity">
-                </div>
-                <div>
-                    <button>Save</button>
-                </div>
-            </fieldset>
-        </form>
 
-    </div> -->
 </body>
 
 </html>
