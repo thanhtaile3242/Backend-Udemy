@@ -8,11 +8,10 @@ const express = require("express");
 const router = express.Router();
 
 // Home
-router.get("/home", getHomepage);
-router.get("/about", getAbout);
+router.get("/home", getHomepage); // Hiện trang hiển thị User
 // create
-router.get("/create", getCreatePage);
-router.post("/create-user", postCreateUser);
+router.get("/create", getCreatePage); // Hiện trang create
+router.post("/create-user", postCreateUser); // Thực hiện create
 // update
 router.get("/update/:id", getUpdatePage); // Hiện trang update
 router.post("/update-user", postUpdateUser); // Thực hiện update
