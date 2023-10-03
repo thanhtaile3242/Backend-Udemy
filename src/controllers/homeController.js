@@ -5,10 +5,7 @@ const getHomepage = async (req, res) => {
     let results = await User.find({});
     return res.render("home.ejs", { listUsers: results });
 };
-// Get about page
-const getAbout = (req, res) => {
-    res.render("sample.ejs");
-};
+
 // Create
 const getCreatePage = (req, res) => {
     res.render("create.ejs");
@@ -51,7 +48,6 @@ const postHandlerRemoverUser = async(req, res) => {
 
 module.exports = {
     getHomepage,
-    getAbout,
     postCreateUser,
     getCreatePage, getUpdatePage,postUpdateUser,
     postDeleteUser,postHandlerRemoverUser
