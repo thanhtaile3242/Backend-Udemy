@@ -38,5 +38,24 @@ routerAPI.delete("/customer", deleteCustomer);
 // Delete customers-many
 routerAPI.delete("/customers-many", deleteArrayCustomers)
   
+
+// Query string
+routerAPI.get("/info",(req, res) => {
+    console.log("Check query",req.query.name);
+    return res.status(200).json({
+        data:req.query
+    })
+});
+// Req.params
+routerAPI.get("/info/:name/:address", (req, res) => {
+    console.log("Check query", req.params);
+    return res.status(200).json({
+        data:req.params
+    })
+})
+
+
+
+
 // Exports
 module.exports = routerAPI;
