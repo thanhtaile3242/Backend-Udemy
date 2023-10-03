@@ -26,7 +26,6 @@ const apiRouters = require("./routes/api.js");
 app.use("/", webRouters);
 app.use("/v1/api/", apiRouters);
 
-
 (async()=>{
     // Check connection
 try{

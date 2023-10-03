@@ -1,6 +1,5 @@
 const {
     getHomepage,
-    getAbout,
     postCreateUser,
     getCreatePage, getUpdatePage, postUpdateUser, postDeleteUser, postHandlerRemoverUser
 } = require("../controllers/homeController.js");
