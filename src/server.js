@@ -26,11 +26,32 @@ const apiRouters = require("./routes/api.js");
 app.use("/", webRouters);
 app.use("/v1/api/", apiRouters);
 
+// MongoDB
+const { MongoClient } = require("mongodb");
+
+
+
+
+
+
+
+
 (async()=>{
     // Check connection
 try{
-    await connection();
-     // Run server
+    // await connection(); (using mongoose)
+
+    // Using mongodb driver
+    const url = process.env.DB_HOST_WITH_DRIVER;
+    const client = new MongoClient(url);
+    const dbName = "hoidanit"
+    await client.connect();
+    console.log("Connected to MongoDB successfully");
+
+    // const db = client.db(dbName);
+    // const collection = db.collection("users");
+
+    // Run server
     app.listen(port, hostName, () => {
         console.log("Backend running on", port);
     });
