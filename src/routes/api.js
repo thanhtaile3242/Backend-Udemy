@@ -1,7 +1,8 @@
 const express = require("express");
 const routerAPI = express.Router();
 const {getUsersAPI, postCreateUserAPI, putUpdateUserAPI, deleteUserAPI, postUploadSingleFileAPI, postUploadMultipleFilesAPI} = require("../controllers/apiController.js");
-const {postCreateCustomer, postCreateArrayCustomer, getAllCustomers, putUpdateCustomer, deleteCustomer,deleteArrayCustomers}= require("../controllers/customerController.js");
+const { postCreateCustomer, postCreateArrayCustomer, getAllCustomers, putUpdateCustomer, deleteCustomer, deleteArrayCustomers } = require("../controllers/customerController.js");
+const {postCreateProject} = require('../controllers/projectController.js')
 
 // API 1
 routerAPI.get("/", (req, res) => {
@@ -53,6 +54,13 @@ routerAPI.get("/info/:name/:address", (req, res) => {
         data:req.params
     })
 })
+
+
+// Project API
+routerAPI.post('/projects', postCreateProject);
+
+
+
 
 
 
