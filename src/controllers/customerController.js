@@ -1,18 +1,39 @@
 const {upLoadSingleFile} = require('../services/fileService')
 const {createCustomerService, createArrayCustomerService, getAllCustomersService, putUpdateCustomersService, deleteCustomersService, deleteArrayCustomerService} = require("../services/customerService");
-
+const Joi = require('joi');
 // 
 module.exports = {
     postCreateCustomer : async(req, res)=>{
-       let {name, address, phone, email, description} = req.body;
-    // Image    
+        let { name, address, phone, email, description } = req.body;
+    // Validate
+        const schema = Joi.object({
+            username:
+                Joi.string()
+                    .alphanum()
+                    .min(3)
+                    .max(30)
+                    .required(),
+            address:
+                Joi.string(),
+            phone: Joi.string().pattern(new RegExp('^[0-9]{8,11}$')),
+
+            email: Joi.string().email(),
+
+            description: Joi.string(),
+        });
+        const {error} = schema.validate(req.body);
+        
+        if (error) {
+            return error
+        } else {
+             // Image    
         let imageUrl = "";
         if(!req.files || Object.keys(req.files).length === 0){
         }else{
         let result = await upLoadSingleFile(req.files.image);
         imageUrl = result.path;
         } 
-    // 
+        // 
         let customerData = {
             name,
             address,
@@ -26,7 +47,9 @@ module.exports = {
             {
                 EC: 0, 
                 data: customer
-            })
+            }
+        )
+        }
     },
     postCreateArrayCustomer: async(req, res) => {
         let customers =  await createArrayCustomerService(req.body.customers);

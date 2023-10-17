@@ -18,7 +18,7 @@ module.exports = {
         }
         if (data.type === "REMOVE-USERS") {
             let myProject = await Project.findById(data.projectId);
-
+            // Remove user in array input
             for (let i = 0; i < data.userArr.length; i++) {
                 myProject.usersInfor.pull(data.userArr[i]);
             }
@@ -26,6 +26,16 @@ module.exports = {
             let result = await myProject.save();
             return result;
         }
+        // insert tasks for a project
+        if (data.type === "ADD-TASKS") {
+            let myProject = await Project.findById(data.projectId);
+             for (let i = 0; i < data.taskArr.length; i++) {
+                myProject.tasks.push(data.taskArr[i]);
+             }
+            let result = await myProject.save();
+            return result
+        }
+
     },
     // Get
     getProject: async(queryString) => {

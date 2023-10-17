@@ -30,8 +30,6 @@ app.use("/v1/api/", apiRouters);
     // Check connection
 try{
     await connection();
-
-    
     // Run server
     app.listen(port, hostName, () => {
         console.log("Backend running on", port);
